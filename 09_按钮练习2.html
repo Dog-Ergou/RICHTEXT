@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>wangEditor demo</title>
+  <style>
+    /* table 样式 */
+    table {
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+
+    table td,
+    table th {
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      padding: 3px 5px;
+    }
+
+    table th {
+      border-bottom: 2px solid #ccc;
+      text-align: center;
+    }
+
+    /* blockquote 样式 */
+    blockquote {
+      display: block;
+      border-left: 8px solid #d0e5f2;
+      padding: 5px 10px;
+      margin: 10px 0;
+      line-height: 1.4;
+      font-size: 100%;
+      background-color: #f1f1f1;
+    }
+
+    /* code 样式 */
+    code {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      background-color: #f1f1f1;
+      border-radius: 3px;
+      padding: 3px 5px;
+      margin: 0 3px;
+    }
+
+    pre code {
+      display: block;
+    }
+
+    /* ul ol 样式 */
+    ul,
+    ol {
+      margin: 10px 0 10px 20px;
+    }
+
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: aqua;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="editor">
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+  </div>
+  <div id="datass">
+
+  </div>
+
+  <div id="text" class="box" ondblclick="editDataDA()" >
+
+  </div>
+  <div>
+    <input type="button" style="width: 100px;height: 20px;"  >
+  </div>
+
+  <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+  <script type="text/javascript" src="/exercise/js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="/exercise/js/wangEditor.js"></script>
+
+<script>
+    var count = 1
+    var data ="";
+    var dadada = 666;
+ 
+      var E = window.wangEditor
+      var editor = new E('#editor')
+      // 自定义菜单配置
+      editor.customConfig.menus = [
+        'head',
+        'bold',
+        'italic',
+        'fontSize',  // 字号
+        'fontName',
+        'underline',
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+      ]
+      editor.customConfig.onchange = function (html) {
+        // html 即变化之后的内容
+        console.log(html)
+        $("#text").html(""+editor.txt.html())
+        data = editor.txt.html()
+        console.log(data+'oioio')
+    }
+      editor.create();
+      editor.txt.html(''+dadada)
+    
+
+function editDataDA(){
+  if(count==1){
+    $("#editor").css("display","none");
+    
+    count=2;
+  }else{
+    $("#editor").css("display","block");
+    count=1;
+   
+  }
+}
+
+
+// document.getElementById('text').addEventListener('click', function () {
+//         // 如果未配置 editor.customConfig.onchange，则 editor.change 为 undefined
+//         editor.change && editor.change()
+//         // $("#text").html(""+editor.txt.html())
+//     })
+
+//   </script>
+  <!-- <script >
+        document.getElementById('editor').addEventListener('click', function () {
+        // 读取 html
+        $('#datass').html(""+editor.txt.html());
+        $('#text').html(""+editor.txt.html());
+        // alert(editor.txt.html())
+    }, false)
+
+    document.getElementById('editor').addEventListener('click', function () {
+        // 读取 text
+        
+        // alert(editor.txt.text())
+    }, false)
+    </script> -->
+</body>
+
+</html>
